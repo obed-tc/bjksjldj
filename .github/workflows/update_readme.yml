@@ -1,0 +1,24 @@
+name: Update README.md
+
+on:
+  schedule:
+    - cron: "0 * * * *"
+
+jobs:
+  update_readme:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Update README.md
+        run: python update_readme.py
